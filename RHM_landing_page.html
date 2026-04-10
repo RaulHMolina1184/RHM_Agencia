@@ -1,0 +1,279 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0d0d; }
+  .rhm-wrap { background: #0f0f0f; color: #e8e8e8; font-family: var(--font-sans); min-height: 100vh; }
+
+  /* NAV */
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; border-bottom: 0.5px solid #2a2a2a; position: sticky; top: 0; background: #0f0f0f; z-index: 10; }
+  .nav-logo { font-size: 18px; font-weight: 500; color: #e8e8e8; letter-spacing: -0.5px; }
+  .nav-logo span { color: #7F77DD; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 13px; color: #888; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+  .nav-links a:hover { color: #e8e8e8; }
+  .nav-cta { background: #7F77DD; color: #fff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 500; }
+  .nav-cta:hover { background: #6b63c9; }
+
+  /* HERO */
+  .hero { padding: 5rem 2rem 4rem; text-align: center; border-bottom: 0.5px solid #1e1e1e; }
+  .hero-tag { display: inline-block; background: #1c1a2e; color: #AFA9EC; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 0.5px solid #3C3489; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: 48px; font-weight: 500; line-height: 1.15; color: #f0f0f0; margin-bottom: 1rem; letter-spacing: -1px; }
+  .hero h1 em { color: #7F77DD; font-style: normal; }
+  .hero p { font-size: 17px; color: #777; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: #7F77DD; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+  .btn-primary:hover { background: #6b63c9; }
+  .btn-outline { background: transparent; color: #aaa; border: 0.5px solid #333; padding: 12px 24px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+  .btn-outline:hover { border-color: #555; color: #e8e8e8; }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-bottom: 0.5px solid #1e1e1e; }
+  .stat { padding: 2rem; text-align: center; border-right: 0.5px solid #1e1e1e; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 32px; font-weight: 500; color: #7F77DD; }
+  .stat-label { font-size: 13px; color: #555; margin-top: 4px; }
+
+  /* SERVICES */
+  .section { padding: 3.5rem 2rem; border-bottom: 0.5px solid #1e1e1e; }
+  .section-tag { font-size: 12px; color: #7F77DD; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .section-title { font-size: 26px; font-weight: 500; color: #f0f0f0; margin-bottom: 0.5rem; }
+  .section-sub { font-size: 14px; color: #555; margin-bottom: 2rem; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: #1e1e1e; border: 0.5px solid #1e1e1e; border-radius: 12px; overflow: hidden; }
+  .service-card { background: #141414; padding: 1.5rem; transition: background 0.2s; }
+  .service-card:hover { background: #181818; }
+  .svc-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 16px; }
+  .svc-icon.purple { background: #1c1a2e; }
+  .svc-icon.teal { background: #0a1e18; }
+  .svc-icon.amber { background: #1e1500; }
+  .svc-icon.pink { background: #1e0a12; }
+  .service-card h3 { font-size: 15px; font-weight: 500; color: #e0e0e0; margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 1rem; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .svc-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; border: 0.5px solid #2a2a2a; color: #666; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .project-card { background: #141414; border: 0.5px solid #1e1e1e; border-radius: 12px; padding: 1.25rem; }
+  .project-card:hover { border-color: #2a2a2a; }
+  .proj-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .proj-title { font-size: 14px; font-weight: 500; color: #e0e0e0; }
+  .proj-link { font-size: 11px; color: #7F77DD; text-decoration: none; cursor: pointer; }
+  .proj-desc { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 12px; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .proj-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #1c1a2e; color: #AFA9EC; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .contact-card { background: #141414; border: 0.5px solid #1e1e1e; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color 0.2s; }
+  .contact-card:hover { border-color: #7F77DD; }
+  .contact-icon { width: 40px; height: 40px; border-radius: 8px; background: #1c1a2e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-label { font-size: 11px; color: #555; margin-bottom: 2px; }
+  .contact-val { font-size: 13px; color: #e0e0e0; font-weight: 500; }
+
+  /* FOOTER */
+  .footer { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-size: 14px; font-weight: 500; color: #444; }
+  .footer-logo span { color: #7F77DD; }
+  .footer-copy { font-size: 12px; color: #333; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 32px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 0.5px solid #1e1e1e; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+
+<div class="rhm-wrap">
+
+  <nav class="nav">
+    <div class="nav-logo"><span>//</span>RHM Agencia</div>
+    <div class="nav-links">
+      <a>Servicios</a>
+      <a>Proyectos</a>
+      <a>Contacto</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Conversemos</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag">Cartago, Costa Rica</div>
+    <h1>Diseño, código y datos<br>que hacen <em>crecer</em> tu negocio</h1>
+    <p>Desarrollo web, diseño gráfico, mantenimiento y análisis de datos — todo bajo un mismo techo.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">Ver servicios</button>
+      <button class="btn-outline" onclick="document.getElementById('proyectos').scrollIntoView({behavior:'smooth'})">Ver proyectos</button>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">años en diseño</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">proyectos web</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">servicios integrados</div>
+    </div>
+  </div>
+
+  <section class="section" id="servicios">
+    <div class="section-tag">Servicios</div>
+    <div class="section-title">Todo lo que tu negocio necesita</div>
+    <div class="section-sub">Soluciones completas, sin necesidad de contratar a varios proveedores</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon purple">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7F77DD" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Desarrollo web</h3>
+        <p>Aplicaciones y sitios web modernos, rápidos y adaptados a tus procesos de negocio.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">React</span>
+          <span class="svc-tag">ASP.NET Core</span>
+          <span class="svc-tag">SQL Server</span>
+          <span class="svc-tag">PHP</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon teal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Mantenimiento y soporte</h3>
+        <p>Tu sitio siempre activo, actualizado y seguro. Planes mensuales sin complicaciones.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Backups</span>
+          <span class="svc-tag">Actualizaciones</span>
+          <span class="svc-tag">cPanel</span>
+          <span class="svc-tag">Soporte</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon amber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Análisis de datos</h3>
+        <p>Dashboards e informes que convierten tus datos en decisiones claras y concretas.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Power BI</span>
+          <span class="svc-tag">SQL</span>
+          <span class="svc-tag">Dashboards</span>
+          <span class="svc-tag">Reportes</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon pink">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Diseño gráfico</h3>
+        <p>Identidad visual, logotipos y material digital que comunican quién sos y qué hacés.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Branding</span>
+          <span class="svc-tag">Logotipos</span>
+          <span class="svc-tag">UX/UI</span>
+          <span class="svc-tag">Material digital</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proyectos">
+    <div class="section-tag">Proyectos</div>
+    <div class="section-title">Trabajo reciente</div>
+    <div class="section-sub">Proyectos desarrollados con tecnologías modernas</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Sistema de Reparaciones y Garantías</div>
+          <span class="proj-link">GitHub</span>
+        </div>
+        <p class="proj-desc">Aplicación web completa para gestión de reparaciones de productos con API REST y CRUD conectado a SQL Server.</p>
+        <div class="proj-stack">
+          <span class="proj-badge">ASP.NET Core</span>
+          <span class="proj-badge">React</span>
+          <span class="proj-badge">SQL Server</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Sistema de Control de Productos</div>
+          <span class="proj-link">Ver más</span>
+        </div>
+        <p class="proj-desc">Sistema web de gestión de inventario con CRUD completo e interfaz responsive conectada a MySQL.</p>
+        <div class="proj-stack">
+          <span class="proj-badge">PHP</span>
+          <span class="proj-badge">MySQL</span>
+          <span class="proj-badge">Bootstrap</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="proj-header">
+          <div class="proj-title">Prototipo App Web Responsive</div>
+          <span class="proj-link">Ver más</span>
+        </div>
+        <p class="proj-desc">Frontend moderno en React con componentes reutilizables preparados para consumo de APIs externas.</p>
+        <div class="proj-stack">
+          <span class="proj-badge">React</span>
+          <span class="proj-badge">JavaScript</span>
+          <span class="proj-badge">CSS3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="section-tag">Contacto</div>
+    <div class="section-title">¿Hablamos?</div>
+    <div class="section-sub">Estoy disponible para proyectos nuevos y consultas</div>
+    <div class="contact-grid">
+      <div class="contact-card" onclick="openLink('https://wa.me/50671788838')">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1D9E75"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.504 3.935 1.385 5.608L0 24l6.545-1.364C8.182 23.507 10.05 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.49-5.063-1.34l-.363-.214-3.761.784.803-3.67-.236-.377A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val">+506 7178 8838</div>
+        </div>
+      </div>
+      <div class="contact-card" onclick="openLink('mailto:hernandezmolinaraul@gmail.com')">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7F77DD" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Correo</div>
+          <div class="contact-val">hernandezmolinaraul@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-card" onclick="openLink('https://github.com/RaulHMolina1184')">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#888"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">RaulHMolina1184</div>
+        </div>
+      </div>
+      <div class="contact-card" onclick="openLink('http://www.linkedin.com/in/raúl-hernández-molina-889027372')">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#378ADD"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">Raúl Hernández Molina</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo"><span>//</span>RHM Agencia</div>
+    <div class="footer-copy">Cartago, Costa Rica · 2025</div>
+  </footer>
+
+</div>
